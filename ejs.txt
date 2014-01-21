@@ -1,0 +1,39 @@
+ejs 的标签系统非常简单，它只有以下3种标签。 	
+
+	<% code %>：JavaScript 代码。  
+	<%= code %>：显示替换过 HTML 特殊字符的内容。  
+	<%- code %>：显示原始 HTML 内容。 
+
+注意： <%= code %> 和 <%- code %> 的区别，当变量 code 为字符串时，两者没有区别；当 code 为比如<h1>hello</h1> 时，<%= code %> 会原样输出 <h1>hello</h1>，而 <%- code %> 则会输出H1大的 hello。 
+
+EJS 的官方示例：
+
+The Data :
+{ title:    'Cleaning Supplies',
+  supplies: ['mop', 'broom', 'duster'] }
+
+The Template：
+<ul>
+<% for(var i=0; i<supplies.length; i++) {%>
+   <li><%= supplies[i] %></li>
+<% } %>
+</ul>
+
+页面布局
+
+Express 3.* 中我们不再使用 layout.ejs 进行页面布局，转而使用 include 来替代。include 的简单使用如下： 
+a.ejs
+<%- include b %>
+hello,world!
+<%- include c %>
+
+b.ejs
+this is b
+
+c.ejs
+this is c
+
+最终 a.ejs 会显示：
+this is b
+hello,world!
+this is c
